@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c46kmk720bmx"]
+
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_blackboard.gd" id="1_urqml"]
+
+[node name="BTBlackboard" type="Node2D"]
+script = ExtResource("1_urqml")

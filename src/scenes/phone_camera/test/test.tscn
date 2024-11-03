@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://coatgchq7v3eg"]
+
+[ext_resource type="Texture2D" uid="uid://e2ylgeoeccvr" path="res://src/scenes/phone_camera/forest.jpg" id="1_j1rlg"]
+[ext_resource type="PackedScene" uid="uid://qkvtsi1qag1t" path="res://src/scenes/phone_camera/phone_camera.tscn" id="1_mnl11"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(642, 357.25)
+scale = Vector2(1.324, 1.13568)
+texture = ExtResource("1_j1rlg")
+
+[node name="PhoneCamera" parent="." instance=ExtResource("1_mnl11")]

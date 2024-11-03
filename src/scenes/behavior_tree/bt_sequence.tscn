@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vaxo0hbdneqp"]
+
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_sequence.gd" id="1_p8udk"]
+
+[node name="BTSequence" type="Node"]
+script = ExtResource("1_p8udk")

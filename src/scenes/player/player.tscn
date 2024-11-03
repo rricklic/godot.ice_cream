@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwatb1c2xb2du"]
+
+[ext_resource type="Script" path="res://src/scenes/player/player.gd" id="1_8jvie"]
+[ext_resource type="Script" path="res://src/scenes/hitbox/hurtbox.gd" id="2_epxsi"]
+[ext_resource type="PackedScene" uid="uid://cqh25d8pungww" path="res://src/scenes/trail_effect/trail_effect.tscn" id="3_rsm8n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xq7y5"]
+custom_solver_bias = 1.0
+size = Vector2(64, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i8v3e"]
+size = Vector2(64, 120)
+
+[node name="Player" type="CharacterBody2D"]
+floor_snap_length = 3.0
+script = ExtResource("1_8jvie")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_xq7y5")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("2_epxsi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_i8v3e")
+
+[node name="TrailEffect" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_rsm8n")]
+z_index = -1
+target = NodePath("..")

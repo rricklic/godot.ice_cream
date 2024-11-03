@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://ooj5o2wsngyx"]
+
+[ext_resource type="PackedScene" uid="uid://mj7j3kkxxw2n" path="res://src/scenes/location_components/door/door.tscn" id="1_f8p8p"]
+[ext_resource type="Script" path="res://src/scenes/locations/home/home.gd" id="1_onbve"]
+[ext_resource type="Script" path="res://src/scenes/location_components/polygon_collision.gd" id="1_oykq8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kkmpf"]
+size = Vector2(64, 120)
+
+[node name="Home" type="Node2D"]
+script = ExtResource("1_onbve")
+
+[node name="Floor" type="StaticBody2D" parent="."]
+script = ExtResource("1_oykq8")
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor"]
+polygon = PackedVector2Array(0, 648, 1152, 648, 1152, 632, 0, 632)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+script = ExtResource("1_oykq8")
+
+[node name="Polygon2D" type="Polygon2D" parent="Ceiling"]
+polygon = PackedVector2Array(0, 0, 0, 16, 1152, 16, 1152, 0)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ceiling"]
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+script = ExtResource("1_oykq8")
+
+[node name="Polygon2D" type="Polygon2D" parent="WallLeft"]
+polygon = PackedVector2Array(0, 16, 0, 632, 16, 632, 16, 16)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallLeft"]
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+script = ExtResource("1_oykq8")
+
+[node name="Polygon2D" type="Polygon2D" parent="WallRight"]
+polygon = PackedVector2Array(1152, 16, 1152, 632, 1136, 632, 1136, 16)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WallRight"]
+
+[node name="Door" parent="." instance=ExtResource("1_f8p8p")]
+position = Vector2(72, 520)
+scene = "res://src/scenes/locations/town/town.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(24, 52)
+shape = SubResource("RectangleShape2D_kkmpf")
+
+[node name="Enter" type="Marker2D" parent="."]
+position = Vector2(176, 568)
+
+[node name="Start" type="Marker2D" parent="."]
+position = Vector2(904, 571.167)
+
+[node name="CameraMinPoint" type="Marker2D" parent="."]
+
+[node name="CameraMaxPoint" type="Marker2D" parent="."]
+position = Vector2(1152, 648)

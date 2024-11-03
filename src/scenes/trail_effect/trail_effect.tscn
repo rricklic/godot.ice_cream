@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqh25d8pungww"]
+
+[ext_resource type="Script" path="res://src/scenes/trail_effect/trail_effect.gd" id="1_6tfm6"]
+
+[sub_resource type="Gradient" id="Gradient_82183"]
+colors = PackedColorArray(1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="TrailEffect" type="Line2D"]
+top_level = true
+width = 2.0
+default_color = Color(1, 0, 0, 1)
+gradient = SubResource("Gradient_82183")
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+round_precision = 32
+antialiased = true
+script = ExtResource("1_6tfm6")

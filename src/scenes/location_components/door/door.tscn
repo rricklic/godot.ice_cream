@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://mj7j3kkxxw2n"]
+
+[ext_resource type="Script" path="res://src/scenes/location_components/door/door.gd" id="1_xm6lw"]
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_xm6lw")

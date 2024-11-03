@@ -1,0 +1,64 @@
+[gd_scene load_steps=15 format=3 uid="uid://75m8wtl1nkgh"]
+
+[ext_resource type="Script" path="res://src/scenes/frog/frog.gd" id="1_0wiqf"]
+[ext_resource type="Texture2D" uid="uid://bhc2jh00s4l8" path="res://images/frog1.png" id="2_r5e1u"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/behavior_tree.gd" id="3_ogpra"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_selector.gd" id="4_bdc8d"]
+[ext_resource type="Script" path="res://src/scenes/frog/behavior/is_frog_tired.gd" id="5_rxjha"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_sequence.gd" id="6_vxqk8"]
+[ext_resource type="Script" path="res://src/scenes/frog/behavior/is_frog_scared.gd" id="7_mqsaw"]
+[ext_resource type="Script" path="res://src/scenes/frog/behavior/init_hop.gd" id="7_vhyap"]
+[ext_resource type="Script" path="res://src/scenes/frog/behavior/perform_hop.gd" id="8_nj7y3"]
+[ext_resource type="Script" path="res://src/scenes/frog/behavior/find_hiding_spot.gd" id="8_yqv1y"]
+[ext_resource type="Script" path="res://src/scenes/frog/behavior/go_to_hinding_spot.gd" id="9_8rxr5"]
+[ext_resource type="Script" path="res://src/scenes/frog/behavior/is_at_hiding_spot.gd" id="10_dathb"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_sequence_star.gd" id="11_gyrqd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpb3p"]
+size = Vector2(18.5, 17.25)
+
+[node name="Frog" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_0wiqf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_r5e1u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.25, 0)
+shape = SubResource("RectangleShape2D_tpb3p")
+
+[node name="BehaviorTree" type="Node" parent="."]
+script = ExtResource("3_ogpra")
+
+[node name="Selector" type="Node" parent="BehaviorTree"]
+script = ExtResource("4_bdc8d")
+
+[node name="Hide" type="Node" parent="BehaviorTree/Selector"]
+script = ExtResource("6_vxqk8")
+
+[node name="IsFrogScared" type="Node" parent="BehaviorTree/Selector/Hide"]
+script = ExtResource("7_mqsaw")
+
+[node name="FindHidingSpot" type="Node" parent="BehaviorTree/Selector/Hide"]
+script = ExtResource("8_yqv1y")
+
+[node name="GoToHidingSpot" type="Node" parent="BehaviorTree/Selector/Hide"]
+script = ExtResource("9_8rxr5")
+
+[node name="IsAtHidingSpot" type="Node" parent="BehaviorTree/Selector/Hide"]
+script = ExtResource("10_dathb")
+
+[node name="IsFrogTired" type="Node" parent="BehaviorTree/Selector"]
+script = ExtResource("5_rxjha")
+
+[node name="Hop" type="Node" parent="BehaviorTree/Selector"]
+script = ExtResource("11_gyrqd")
+
+[node name="InitHop" type="Node" parent="BehaviorTree/Selector/Hop"]
+script = ExtResource("7_vhyap")
+
+[node name="PerformHop" type="Node" parent="BehaviorTree/Selector/Hop"]
+script = ExtResource("8_nj7y3")

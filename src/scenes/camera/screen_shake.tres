@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CameraTraumaData" load_steps=3 format=3 uid="uid://dsld38bhk4k5v"]
+
+[ext_resource type="Script" path="res://src/scenes/camera/camera_trauma_data.gd" id="1_850m6"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uovel"]
+
+[resource]
+script = ExtResource("1_850m6")
+noise = SubResource("FastNoiseLite_uovel")
+noise_speed = 1.0
+max_x = 10.0
+max_y = 10.0
+max_r = 25.0
+recovery = 1.0

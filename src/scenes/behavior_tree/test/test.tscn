@@ -1,0 +1,79 @@
+[gd_scene load_steps=14 format=3 uid="uid://wa6dx4wq3f7q"]
+
+[ext_resource type="Texture2D" uid="uid://csml7bxruxear" path="res://images/icon.svg" id="1_4oekj"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/behavior_tree.gd" id="1_pnnm1"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_selector.gd" id="2_rmpmr"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_sequence.gd" id="3_l00ph"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/test/load_mouse_position.gd" id="4_sexiu"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/test/is_mouse_near.gd" id="5_witwx"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/test/go_to_mouse.gd" id="6_cxq8r"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/test/is_at_home.gd" id="8_0fvb1"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/test/find_closest_home.gd" id="8_80gi0"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/test/go_to_home.gd" id="9_6uic8"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/test/change_color.gd" id="9_q5p57"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0okd"]
+size = Vector2(178, 176)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7oeor"]
+size = Vector2(184, 170)
+
+[node name="Test" type="Node2D"]
+
+[node name="Enemy" type="Node2D" parent="."]
+position = Vector2(496, 248)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
+texture = ExtResource("1_4oekj")
+
+[node name="BehaviorTree" type="Node" parent="Enemy"]
+script = ExtResource("1_pnnm1")
+
+[node name="Selector" type="Node" parent="Enemy/BehaviorTree"]
+script = ExtResource("2_rmpmr")
+
+[node name="FolllowMouse" type="Node" parent="Enemy/BehaviorTree/Selector"]
+script = ExtResource("3_l00ph")
+
+[node name="LoadMousePosition" type="Node" parent="Enemy/BehaviorTree/Selector/FolllowMouse"]
+script = ExtResource("4_sexiu")
+
+[node name="IsMouseNear" type="Node" parent="Enemy/BehaviorTree/Selector/FolllowMouse"]
+script = ExtResource("5_witwx")
+
+[node name="ChangeColor" type="Node" parent="Enemy/BehaviorTree/Selector/FolllowMouse"]
+script = ExtResource("9_q5p57")
+color = Color(1, 1, 1, 1)
+
+[node name="GoToMouse" type="Node" parent="Enemy/BehaviorTree/Selector/FolllowMouse"]
+script = ExtResource("6_cxq8r")
+
+[node name="ChangeColor" type="Node" parent="Enemy/BehaviorTree/Selector"]
+script = ExtResource("3_l00ph")
+
+[node name="IsAtHome" type="Node" parent="Enemy/BehaviorTree/Selector/ChangeColor"]
+script = ExtResource("8_0fvb1")
+
+[node name="ChangeColor" type="Node" parent="Enemy/BehaviorTree/Selector/ChangeColor"]
+script = ExtResource("9_q5p57")
+
+[node name="GoHome" type="Node" parent="Enemy/BehaviorTree/Selector"]
+script = ExtResource("3_l00ph")
+
+[node name="FindClosestHome" type="Node" parent="Enemy/BehaviorTree/Selector/GoHome"]
+script = ExtResource("8_80gi0")
+
+[node name="GoToHome" type="Node" parent="Enemy/BehaviorTree/Selector/GoHome"]
+script = ExtResource("9_6uic8")
+
+[node name="Home1" type="Area2D" parent="." groups=["home"]]
+position = Vector2(176, 496)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Home1"]
+shape = SubResource("RectangleShape2D_a0okd")
+
+[node name="Home2" type="Area2D" parent="." groups=["home"]]
+position = Vector2(992, 504)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Home2"]
+shape = SubResource("RectangleShape2D_7oeor")

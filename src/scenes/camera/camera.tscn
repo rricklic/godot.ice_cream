@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://v82ie1avxmo1"]
+
+[ext_resource type="Script" path="res://src/scenes/camera/camera.gd" id="1_2lyrp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uiixn"]
+
+[node name="Camera" type="Node2D"]
+script = ExtResource("1_2lyrp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+ignore_rotation = false
+
+[node name="TraumaDetectArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TraumaDetectArea"]
+shape = SubResource("RectangleShape2D_uiixn")

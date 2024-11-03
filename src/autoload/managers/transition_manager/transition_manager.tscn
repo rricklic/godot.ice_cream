@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://vodmnik5espg"]
+
+[ext_resource type="Script" path="res://src/autoload/managers/transition_manager/transition_manager.gd" id="1_b4pls"]
+[ext_resource type="PackedScene" uid="uid://bjsptlx2qkxws" path="res://src/autoload/managers/screen_shader_manager/screen_shader_manager.tscn" id="2_oon83"]
+
+[node name="TransitionManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_b4pls")
+
+[node name="ScreenShaderManager" parent="." instance=ExtResource("2_oon83")]

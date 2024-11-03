@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://12pwx4jrmc3b"]
+
+[ext_resource type="Script" path="res://src/game/main.gd" id="1_nbg4q"]
+[ext_resource type="PackedScene" uid="uid://dwatb1c2xb2du" path="res://src/scenes/player/player.tscn" id="2_2adog"]
+[ext_resource type="PackedScene" uid="uid://v82ie1avxmo1" path="res://src/scenes/camera/camera.tscn" id="3_tosk1"]
+[ext_resource type="Script" path="res://src/scenes/camera/camera_trauma_data.gd" id="4_ubu0h"]
+
+[sub_resource type="Resource" id="Resource_d1k8f"]
+script = ExtResource("4_ubu0h")
+noise_speed = 1.0
+max_x = 25.0
+max_y = 25.0
+max_r = 10.0
+recovery = 2.0
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_nbg4q")
+
+[node name="Player" parent="." instance=ExtResource("2_2adog")]
+jump_time_peak = 0.4
+jump_time_land = 0.25
+
+[node name="Camera" parent="." instance=ExtResource("3_tosk1")]
+camera_trauma_data = SubResource("Resource_d1k8f")

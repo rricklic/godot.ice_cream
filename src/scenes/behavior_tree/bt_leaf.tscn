@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://o77hxrwr2mft"]
+
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_leaf.gd" id="1_dc8sy"]
+
+[node name="BTLeaf" type="Node"]
+script = ExtResource("1_dc8sy")

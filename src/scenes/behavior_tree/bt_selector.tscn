@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://iiy7un4cralt"]
+
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_selector.gd" id="1_whm2i"]
+
+[node name="BTSelector" type="Node"]
+script = ExtResource("1_whm2i")

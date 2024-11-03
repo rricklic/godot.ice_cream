@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6xrko6jmrs16"]
+
+[ext_resource type="Script" path="res://src/autoload/managers/scene_manager/scene_manager.gd" id="1_ter7e"]
+[ext_resource type="Script" path="res://src/autoload/managers/transition_manager/transition_manager.gd" id="2_j6son"]
+
+[node name="SceneManager" type="Node"]
+process_mode = 3
+script = ExtResource("1_ter7e")
+
+[node name="TransitionManager" type="Node" parent="."]
+script = ExtResource("2_j6son")

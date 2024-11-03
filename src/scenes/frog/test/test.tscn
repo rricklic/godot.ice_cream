@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsejtpcuouifo"]
+
+[ext_resource type="Script" path="res://src/scenes/frog/test/test.gd" id="1_lyh13"]
+[ext_resource type="PackedScene" uid="uid://75m8wtl1nkgh" path="res://src/scenes/frog/frog.tscn" id="1_ws0vq"]
+[ext_resource type="PackedScene" uid="uid://qkvtsi1qag1t" path="res://src/scenes/phone_camera/phone_camera.tscn" id="2_g8joe"]
+[ext_resource type="Texture2D" uid="uid://bhc2jh00s4l8" path="res://images/frog1.png" id="4_w852r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xisne"]
+size = Vector2(1392, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e4bxv"]
+size = Vector2(50, 106)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g3vv2"]
+size = Vector2(34, 74)
+
+[node name="Test" type="Node2D"]
+script = ExtResource("1_lyh13")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(664, 696)
+shape = SubResource("RectangleShape2D_xisne")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(-24, 584)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(15, 43)
+shape = SubResource("RectangleShape2D_e4bxv")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(1344, 616)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(-56, 24)
+shape = SubResource("RectangleShape2D_g3vv2")
+
+[node name="Frog" parent="." instance=ExtResource("1_ws0vq")]
+position = Vector2(664, 624)
+
+[node name="Frog2" parent="." instance=ExtResource("1_ws0vq")]
+position = Vector2(432, 616)
+
+[node name="Frog3" parent="." instance=ExtResource("1_ws0vq")]
+position = Vector2(936, 576)
+
+[node name="Frog4" parent="." instance=ExtResource("1_ws0vq")]
+position = Vector2(232, 640)
+
+[node name="Frog5" parent="." instance=ExtResource("1_ws0vq")]
+position = Vector2(88, 648)
+
+[node name="Frog6" parent="." instance=ExtResource("1_ws0vq")]
+position = Vector2(1224, 648)
+
+[node name="HidingSpot1" type="Marker2D" parent="." groups=["hiding_spot"]]
+position = Vector2(160, 672)
+
+[node name="HidingSpot2" type="Marker2D" parent="." groups=["hiding_spot"]]
+position = Vector2(1128, 672)
+
+[node name="PhoneCamera" parent="." instance=ExtResource("2_g8joe")]
+
+[node name="FrogTest" type="Sprite2D" parent="."]
+position = Vector2(672, 288)
+texture = ExtResource("4_w852r")

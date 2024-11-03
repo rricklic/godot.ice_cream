@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbune4qdgaulb"]
+
+[ext_resource type="Script" path="res://src/scenes/enemies/boss/boss.gd" id="1_eeqig"]
+[ext_resource type="PackedScene" uid="uid://b0m1q8yw3j33t" path="res://src/scenes/behavior_tree/behavior_tree.tscn" id="2_v123o"]
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_leaf.gd" id="4_004ml"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ihut"]
+size = Vector2(64, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y6rkk"]
+size = Vector2(192, 192)
+
+[sub_resource type="GDScript" id="GDScript_vqodr"]
+script/source = "class_name BTComposite extends Node
+
+enum Type {
+	SELECTOR,
+	SEQUENCE
+}
+
+@export var type: Type
+var expected_state: BehaviorTree.NodeState
+
+func _ready() -> void:
+	if (type == Type.SEQUENCE):
+		expected_state = BehaviorTree.NodeState.SUCCESS
+
+	if (type == Type.SELECTOR):
+		expected_state = BehaviorTree.NodeState.FAILURE
+
+func _get_configuration_warnings() -> PackedStringArray:
+	if (get_child_count() == 0):
+		return [\"BTComposite requires at least one child of type BTComposite or BTLeaf\"]
+	return []
+
+func tick(actor: Node, blackboard: BTBlackboard) -> BehaviorTree.NodeState:
+	for child: Node in get_children():
+		var state: BehaviorTree.NodeState = child.tick(actor, blackboard)
+		if (state != expected_state):
+			return state
+	return expected_state
+"
+
+[node name="Boss" type="CharacterBody2D"]
+script = ExtResource("1_eeqig")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(0, 0, 0, 64, 64, 64, 64, 0)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_3ihut")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(32, 32)
+shape = SubResource("RectangleShape2D_y6rkk")
+
+[node name="BehaviorTree" parent="." instance=ExtResource("2_v123o")]
+
+[node name="BTComposite" type="Node" parent="BehaviorTree"]
+script = SubResource("GDScript_vqodr")
+
+[node name="BTLeaf" type="Node" parent="BehaviorTree/BTComposite"]
+script = ExtResource("4_004ml")
+
+[node name="BTLeaf2" type="Node" parent="BehaviorTree/BTComposite"]
+script = ExtResource("4_004ml")
+
+[node name="BTLeaf3" type="Node" parent="BehaviorTree/BTComposite"]
+script = ExtResource("4_004ml")
+
+[node name="BTComposite2" type="Node" parent="BehaviorTree"]
+script = SubResource("GDScript_vqodr")
+
+[node name="BTLeaf" type="Node" parent="BehaviorTree/BTComposite2"]
+script = ExtResource("4_004ml")
+
+[node name="BTLeaf2" type="Node" parent="BehaviorTree/BTComposite2"]
+script = ExtResource("4_004ml")

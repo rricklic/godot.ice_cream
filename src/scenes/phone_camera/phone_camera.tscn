@@ -1,0 +1,64 @@
+[gd_scene load_steps=4 format=3 uid="uid://qkvtsi1qag1t"]
+
+[ext_resource type="Script" path="res://src/scenes/phone_camera/phone_camera.gd" id="1_080kt"]
+[ext_resource type="Texture2D" uid="uid://d2scue1lm5q2r" path="res://src/scenes/phone_camera/phone_camera.png" id="3_dxo00"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_3isgq"]
+viewport_path = NodePath("SubViewport2")
+
+[node name="PhoneCamera" type="Node2D"]
+script = ExtResource("1_080kt")
+
+[node name="SubViewportContainerNO" type="SubViewportContainer" parent="."]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -93.5
+offset_top = -43.0
+offset_right = 93.5
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainerNO"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+canvas_cull_mask = 4294967293
+size = Vector2i(187, 86)
+render_target_update_mode = 0
+
+[node name="Camera2D" type="Camera2D" parent="SubViewportContainerNO/SubViewport"]
+texture_filter = 1
+ignore_rotation = false
+zoom = Vector2(2, 2)
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+canvas_cull_mask = 4294967293
+size = Vector2i(188, 86)
+
+[node name="Camera2D2" type="Camera2D" parent="SubViewport2"]
+visibility_layer = 2
+ignore_rotation = false
+zoom = Vector2(2, 2)
+
+[node name="Screen" type="Sprite2D" parent="."]
+visibility_layer = 2
+texture = SubResource("ViewportTexture_3isgq")
+
+[node name="Shutter" type="Polygon2D" parent="."]
+visible = false
+visibility_layer = 2
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-96, -48, 64, -48, 64, 48, -96, 48)
+
+[node name="PhoneCase" type="Sprite2D" parent="."]
+visibility_layer = 2
+texture = ExtResource("3_dxo00")
+
+[node name="Photo" type="Sprite2D" parent="."]
+visibility_layer = 2
+position = Vector2(128, 512)

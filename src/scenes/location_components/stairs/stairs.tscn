@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6rwvcjx5lb8i"]
+
+[ext_resource type="Script" path="res://src/scenes/location_components/stairs/stairs.gd" id="1_x47rk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7nj1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ij3tj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebe1n"]
+size = Vector2(160, 20)
+
+[node name="Stairs" type="Node2D"]
+script = ExtResource("1_x47rk")
+
+[node name="LowerArea" type="Area2D" parent="."]
+position = Vector2(0, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LowerArea"]
+shape = SubResource("RectangleShape2D_d7nj1")
+
+[node name="UpperArea" type="Area2D" parent="."]
+position = Vector2(128, 64)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperArea"]
+shape = SubResource("RectangleShape2D_ij3tj")
+
+[node name="UpperFloor" type="Area2D" parent="."]
+position = Vector2(64, 40)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpperFloor"]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_ebe1n")

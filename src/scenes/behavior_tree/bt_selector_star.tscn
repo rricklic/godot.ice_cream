@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://vlunf3ba6ejn"]
+
+[ext_resource type="Script" path="res://src/scenes/behavior_tree/bt_selector_star.gd" id="1_i2kcv"]
+
+[node name="BTSelectorStar" type="Node"]
+script = ExtResource("1_i2kcv")
